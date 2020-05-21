@@ -49,6 +49,8 @@ import {
   ServiceOptions,
 } from '@loopback/core';
 
+/* eslint-enable @typescript-eslint/no-unused-vars */
+
 // Binding is re-exported as Binding / Booter types are needed when consuming
 // BootMixin and this allows a user to import them from the same package (UX!)
 export {Binding};
@@ -89,7 +91,7 @@ export function BootMixin<T extends MixinTarget<Application>>(superClass: T) {
      * Convenience method to call bootstrapper.boot() by resolving bootstrapper
      */
     async boot(): Promise<void> {
-      /* eslint-disable @typescript-eslint/ban-ts-ignore */
+      /* eslint-disable @typescript-eslint/ban-ts-comment */
       // A workaround to access protected Application methods
       const self = (this as unknown) as Application;
 
@@ -116,7 +118,7 @@ export function BootMixin<T extends MixinTarget<Application>>(superClass: T) {
       // @ts-ignore
       this.setState('booted');
 
-      /* eslint-enable @typescript-eslint/ban-ts-ignore */
+      /* eslint-enable @typescript-eslint/ban-ts-comment */
     }
 
     /**
@@ -171,7 +173,7 @@ export function BootMixin<T extends MixinTarget<Application>>(superClass: T) {
      */
     // Unfortunately, TypeScript does not allow overriding methods inherited
     // from mapped types. https://github.com/microsoft/TypeScript/issues/38496
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     public component<C extends Component = Component>(
       componentCtor: Constructor<C>,

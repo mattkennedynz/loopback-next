@@ -66,9 +66,7 @@ interface AppRegistry {
  *   { clientId: {client_secret, list_of_tokens} }
  */
 const registeredApps: AppRegistry = {
-  // eslint-disable-next-line @typescript-eslint/camelcase
   '1111': {client_secret: 'app1_secret', tokens: {}},
-  // eslint-disable-next-line @typescript-eslint/camelcase
   '2222': {client_secret: 'app2_secret', tokens: {}},
 };
 
@@ -136,19 +134,15 @@ async function createJwt(
       jti: jti,
       sub: user.id,
       name: '' + user.firstName + ' ' + user.lastName,
-      // eslint-disable-next-line @typescript-eslint/camelcase
       last_name: user.lastName,
-      // eslint-disable-next-line @typescript-eslint/camelcase
       first_name: user.firstName,
       email: user.email,
       username: user.email,
       iss: 'sample oauth provider',
       exp: Math.floor(Date.now() / 1000) + 5 * 1000,
       iat: Math.floor(Date.now() / 1000),
-      // eslint-disable-next-line @typescript-eslint/camelcase
       grant_type: 'auth code',
       scopes: scopes,
-      // eslint-disable-next-line @typescript-eslint/camelcase
       client_id: clientId,
     },
     signingKey,
@@ -293,7 +287,6 @@ app.post('/oauth/token', urlencodedParser, function (req, res) {
     const oauthstates = registeredApps[req.body.client_id].tokens;
     if (oauthstates[req.body.code]) {
       res.setHeader('Content-Type', 'application/json');
-      // eslint-disable-next-line @typescript-eslint/camelcase
       res.send({access_token: oauthstates[req.body.code].token});
     } else {
       res.sendStatus(401);
@@ -317,7 +310,6 @@ app.get('/oauth/token', function (req, res) {
     const code = req.query.code as string;
     if (oauthstates[code]) {
       res.setHeader('Content-Type', 'application/json');
-      // eslint-disable-next-line @typescript-eslint/camelcase
       res.send({access_token: oauthstates[code].token});
     } else {
       res.sendStatus(401);
